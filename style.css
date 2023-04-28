@@ -13,32 +13,29 @@
   row-gap: 5%;
 }
 * body > section {
-  width: 100%;
   background-color: #009999;
 }
 
 .keyboard {
   display: flex;
+  width: 1000px;
   margin: 0 auto;
-  height: 60vh;
-  padding: 3%;
+  height: 450px;
+  padding: 5%;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 5px;
+  justify-content: space-between;
 }
 .keyboard .key__simple {
   display: flex;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1.1/1;
   height: 20%;
   background-color: #FFCC33;
   color: #990000;
   border-radius: 3px;
   align-items: center;
   justify-content: center;
-}
-.keyboard .key__simple.pressed {
-  background: #996600;
-  transform: translateY(4px);
 }
 .keyboard .key__simple:hover {
   background-color: #FFCC33;
@@ -53,6 +50,7 @@
 
 .textDisplayArea {
   display: flex;
+  width: 100%;
   margin: 0 auto;
   height: 30vh;
   padding: 1%;
@@ -71,6 +69,31 @@
 .pressed {
   background: #996600;
   transform: translateY(4px);
+}
+
+.key__simple.pressed {
+  background-color: #996600;
+  transform: translateY(4px);
+}
+
+#Backspace {
+  aspect-ratio: 2.5/1;
+}
+
+#Tab, #Ctrl {
+  aspect-ratio: 1.5/1;
+}
+
+#Enter, #CapsLock, #ShiftLeft, #Shift {
+  aspect-ratio: 2.1/1;
+}
+
+#Space {
+  aspect-ratio: 7/1;
+}
+
+#ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
+  aspect-ratio: 1.4/1;
 }
 
 /*# sourceMappingURL=style.css.map */

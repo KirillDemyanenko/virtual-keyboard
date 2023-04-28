@@ -1,5 +1,89 @@
+$color_main: #33CCCC;
+$color_section: #009999;
+$color_text_area: #66CCCC;
+$color_second: #FFCC33;
+$color_text: #FF0000;
+$color_keyboard_text: #990000;
+$color_keys_shadow: #996600;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: $color_main;
+    padding: 5%;
+    flex-direction: column;
+    row-gap: 5%;
+
+    & > section {
+      width: 100%;
+      background-color: $color_section;
+    }
+  }
+}
+
+.keyboard {
+  display: flex;
+  margin: 0 auto;
+  height: 60vh;
+  padding: 3%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px;
+
+  .key__simple {
+    display: flex;
+    aspect-ratio: 1 / 1;
+    height: 50px;
+    background-color: $color_second;
+    color: $color_keyboard_text;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+
+    &.pressed {
+      background: $color_keys_shadow;
+      transform: translateY(4px);
+    }
+
+    &:hover {
+      background-color: $color_second;
+    }
+
+    &:active {
+      background: $color_keys_shadow;
+      transform: translateY(4px);
+    }
+  }
+  .backspace {
+    aspect-ratio: 2.5 / 1;
+  }
+}
+
+.textDisplayArea {
+  display: flex;
+  margin: 0 auto;
+  height: 30vh;
+  padding: 1%;
+
+  textarea {
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    background-color: $color_text_area;
+    border: none transparent;
+    border-radius: 10px;
+    padding: 10px;
+    color: $color_text;
+  }
+}
+
+.pressed {
+  background: $color_keys_shadow;
+  transform: translateY(4px);
 }

@@ -1,5 +1,5 @@
 const keysEn = [
-  '`',
+  'Backquote',
   '1',
   '2',
   '3',
@@ -10,8 +10,8 @@ const keysEn = [
   '8',
   '9',
   '0',
-  '-',
-  '=',
+  'Minus',
+  'Equal',
   'Backspace',
   'Tab',
   'q',
@@ -24,9 +24,10 @@ const keysEn = [
   'i',
   'o',
   'p',
-  '[',
-  ']',
-  '|',
+  'BracketLeft',
+  'BracketRight',
+  'Backslash',
+  'Del',
   'CapsLock',
   'a',
   's',
@@ -37,10 +38,10 @@ const keysEn = [
   'j',
   'k',
   'l',
-  ';',
-  `'`,
+  'Semicolon',
+  `Quote`,
   'Enter',
-  'Shift',
+  'ShiftLeft',
   'z',
   'x',
   'c',
@@ -48,9 +49,9 @@ const keysEn = [
   'b',
   'n',
   'm',
-  ',',
-  '.',
-  '/',
+  'Comma',
+  'Period',
+  'Slash',
   'ArrowUp',
   'Shift',
   'Ctrl',
@@ -63,6 +64,7 @@ const keysEn = [
   'ArrowDown',
   'ArrowRight',
 ];
+let repeat = false;
 
 function generateKeyboard() {
   const keyboard = document.createElement('section');
@@ -81,19 +83,40 @@ function generateTextDisplayArea() {
 function generateKeys() {
   for (let key of keysEn) {
     const keyEn = document.createElement('div');
-    keyEn.classList.add('key__simple', 'key__en', `sym__${key}`);
-    keyEn.innerText = key.toUpperCase();
+    if (key.length === 1) {
+      keyEn.classList.add('key__simple', 'key__en', `sym__${key}`);
+      keyEn.innerText = key.toUpperCase();
+    } else {
+      keyEn.classList.add('key__simple', 'key__en', `special__${key}`);
+      keyEn.id = key;
+      keyEn.innerText = key;
+    }
     document.addEventListener('keydown', (ev) => {
-      switch (ev.code) {
-        case `Key${key.toUpperCase()}`: {
-          document.querySelector(`.sym__${key}`).classList.add('pressed');
-          document.querySelector('textarea').value += key;
-          break;
-        }
-        case `Digit${key}`: {
-          document.querySelector(`.sym__${key}`).classList.add('pressed');
-          document.querySelector('textarea').value += key;
-          break;
+      // console.log(ev.code);
+      if (!ev.repeat) {
+        switch (ev.code) {
+          case `Key${key.toUpperCase()}`: {
+            document.querySelector(`.sym__${key}`).classList.add('pressed');
+            document.querySelector('textarea').value += key;
+            break;
+          }
+          case `Digit${key}`: {
+            document.querySelector(`.sym__${key}`).classList.add('pressed');
+            document.querySelector('textarea').value += key;
+            break;
+          }
+          case 'Backspace': {
+            if (!repeat) {
+              repeat = true;
+              document
+                .querySelector(`.special__${key}`)
+                ?.classList.add('pressed');
+              document.querySelector('textarea').value = document
+                .querySelector('textarea')
+                .value.slice(0, -1);
+            }
+            break;
+          }
         }
       }
     });
@@ -105,6 +128,13 @@ function generateKeys() {
         }
         case `Digit${key}`: {
           document.querySelector(`.sym__${key}`).classList.remove('pressed');
+          break;
+        }
+        case 'Backspace': {
+          document
+            .querySelector(`.special__${key}`)
+            ?.classList.remove('pressed');
+          repeat = false;
           break;
         }
       }

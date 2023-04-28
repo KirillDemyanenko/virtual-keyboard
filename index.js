@@ -1,88 +1,122 @@
+const keysEn = [
+  '`',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '0',
+  '-',
+  '=',
+  'Backspace',
+  'Tab',
+  'q',
+  'w',
+  'e',
+  'r',
+  't',
+  'y',
+  'u',
+  'i',
+  'o',
+  'p',
+  '[',
+  ']',
+  '|',
+  'CapsLock',
+  'a',
+  's',
+  'd',
+  'f',
+  'g',
+  'h',
+  'j',
+  'k',
+  'l',
+  ';',
+  `'`,
+  'Enter',
+  'Shift',
+  'z',
+  'x',
+  'c',
+  'v',
+  'b',
+  'n',
+  'm',
+  ',',
+  '.',
+  '/',
+  'ArrowUp',
+  'Shift',
+  'Ctrl',
+  'Win',
+  'Alt',
+  'Space',
+  'Alt',
+  'Ctrl',
+  'ArrowLeft',
+  'ArrowDown',
+  'ArrowRight',
+];
+
 function generateKeyboard() {
-    const keyboard = document.createElement('section')
-    keyboard.classList.add('keyboard')
-    document.body.append(keyboard)
+  const keyboard = document.createElement('section');
+  keyboard.classList.add('keyboard');
+  document.body.append(keyboard);
 }
 
 function generateTextDisplayArea() {
-    const textDisplayArea = document.createElement('section')
-    const textArea = document.createElement('textarea')
-    textDisplayArea.classList.add('textDisplayArea')
-    textDisplayArea.append(textArea)
-    document.body.append(textDisplayArea)
-}
-
-function generateKeysFirstRow() {
-    const keysEn = `\`1234567890-=`
-    for (let sym of keysEn) {
-        const keyEn = document.createElement('div')
-        keyEn.classList.add('key__simple', 'key__en', `sym__${sym}`)
-        keyEn.innerText = sym
-        document.addEventListener('keydown', (ev) => {
-            if (ev.code === `Digit${sym}`) {
-                document.querySelector(`.sym__${sym}`).classList.add('pressed')
-            }
-        })
-        document.addEventListener('keyup', (ev) => {
-            if (ev.code === `Digit${sym}`) {
-                document.querySelector(`.sym__${sym}`).classList.remove('pressed')
-            }
-        })
-        document.querySelector('.keyboard').append(keyEn)
-    }
-    const keyEn = document.createElement('div')
-    keyEn.classList.add('key__simple', 'backspace', `sym__backspace`)
-    keyEn.innerText = 'Backspace'
-    document.addEventListener('keydown', (ev) => {
-        if (ev.code === `Backspace`) {
-            document.querySelector(`.backspace`).classList.add('pressed')
-        }
-    })
-    document.addEventListener('keyup', (ev) => {
-        if (ev.code === `Backspace`) {
-            document.querySelector(`.backspace`).classList.remove('pressed')
-        }
-    })
-    document.querySelector('.keyboard').append(keyEn)
-
+  const textDisplayArea = document.createElement('section');
+  const textArea = document.createElement('textarea');
+  textDisplayArea.classList.add('textDisplayArea');
+  textDisplayArea.append(textArea);
+  document.body.append(textDisplayArea);
 }
 
 function generateKeys() {
-    generateKeysFirstRow()
-    const simpleKeysEn = `qwertyuiop[]asdfghjkl;'zxcvbnm,./`
-    const simpleKeysRu = `йцукенгшщзхъфывапролджэячсмитьбю.`
-    for (let sym of simpleKeysEn) {
-        const keyEn = document.createElement('div')
-        keyEn.classList.add('key__simple', 'key__en', `sym__${sym}`)
-        keyEn.innerText = sym
-        document.addEventListener('keydown', (ev) => {
-            if (ev.code === `Key${sym.toUpperCase()}`) {
-                document.querySelector(`.sym__${sym}`).classList.add('pressed')
-            }
-        })
-        document.addEventListener('keyup', (ev) => {
-            if (ev.code === `Key${sym.toUpperCase()}`) {
-                document.querySelector(`.sym__${sym}`).classList.remove('pressed')
-            }
-        })
-        document.querySelector('.keyboard').append(keyEn)
-    }
-    for (let sym of simpleKeysRu) {
-        const keyRu = document.createElement('div')
-        keyRu.classList.add('key__simple', 'key__en')
-        keyRu.innerText = sym
-        keyRu.style.display = 'none'
-        document.querySelector('.keyboard').append(keyRu)
-    }
-
+  for (let key of keysEn) {
+    const keyEn = document.createElement('div');
+    keyEn.classList.add('key__simple', 'key__en', `sym__${key}`);
+    keyEn.innerText = key.toUpperCase();
+    document.addEventListener('keydown', (ev) => {
+      switch (ev.code) {
+        case `Key${key.toUpperCase()}`: {
+          document.querySelector(`.sym__${key}`).classList.add('pressed');
+          document.querySelector('textarea').value += key;
+          break;
+        }
+        case `Digit${key}`: {
+          document.querySelector(`.sym__${key}`).classList.add('pressed');
+          document.querySelector('textarea').value += key;
+          break;
+        }
+      }
+    });
+    document.addEventListener('keyup', (ev) => {
+      switch (ev.code) {
+        case `Key${key.toUpperCase()}`: {
+          document.querySelector(`.sym__${key}`).classList.remove('pressed');
+          break;
+        }
+        case `Digit${key}`: {
+          document.querySelector(`.sym__${key}`).classList.remove('pressed');
+          break;
+        }
+      }
+    });
+    document.querySelector('.keyboard').append(keyEn);
+  }
 }
 
 function start() {
-    generateTextDisplayArea()
-    generateKeyboard()
-    generateKeys()
+  generateTextDisplayArea();
+  generateKeyboard();
+  generateKeys();
 }
 
-
-
-start()
+start();

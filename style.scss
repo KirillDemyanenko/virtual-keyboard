@@ -41,18 +41,19 @@ $color_keys_shadow: #996600;
     display: flex;
     aspect-ratio: 1.1 / 1;
     height: 20%;
-    background-color: $color_second;
-    color: $color_keyboard_text;
-    border-radius: 3px;
     align-items: center;
     justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #161718;
+    color: #eee;
+    position: relative;
 
     &:hover {
-      background-color: $color_second;
+      box-shadow: 0 0 5px 5px;
     }
 
     &:active {
-      background: $color_keys_shadow;
       transform: translateY(4px);
     }
   }
@@ -86,7 +87,7 @@ $color_keys_shadow: #996600;
 }
 
 .key__simple.pressed {
-  background-color: $color_keys_shadow;
+  box-shadow: 0 0 5px 5px;
   transform: translateY(4px);
 }
 
@@ -98,7 +99,7 @@ $color_keys_shadow: #996600;
   aspect-ratio: 1.5 / 1;
 }
 
-#Enter, #CapsLock, #ShiftLeft, #Shift {
+#Enter, #CapsLock, #ShiftLeft, #ShiftRight {
   aspect-ratio: 2.1 / 1
 }
 
@@ -108,4 +109,14 @@ $color_keys_shadow: #996600;
 
 #ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
   aspect-ratio: 1.4 / 1;
+}
+
+.circle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  left: 5px;
+  top: 5px;
 }

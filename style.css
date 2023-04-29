@@ -31,17 +31,18 @@
   display: flex;
   aspect-ratio: 1.1/1;
   height: 20%;
-  background-color: #FFCC33;
-  color: #990000;
-  border-radius: 3px;
   align-items: center;
   justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #161718;
+  color: #eee;
+  position: relative;
 }
 .keyboard .key__simple:hover {
-  background-color: #FFCC33;
+  box-shadow: 0 0 5px 5px;
 }
 .keyboard .key__simple:active {
-  background: #996600;
   transform: translateY(4px);
 }
 .keyboard .backspace {
@@ -72,7 +73,7 @@
 }
 
 .key__simple.pressed {
-  background-color: #996600;
+  box-shadow: 0 0 5px 5px;
   transform: translateY(4px);
 }
 
@@ -84,7 +85,7 @@
   aspect-ratio: 1.5/1;
 }
 
-#Enter, #CapsLock, #ShiftLeft, #Shift {
+#Enter, #CapsLock, #ShiftLeft, #ShiftRight {
   aspect-ratio: 2.1/1;
 }
 
@@ -94,6 +95,16 @@
 
 #ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
   aspect-ratio: 1.4/1;
+}
+
+.circle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  left: 5px;
+  top: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -81,6 +81,23 @@ function generateTextDisplayArea() {
 }
 
 function generateKeys() {
+  const spKeys = {
+    Backquote: '`',
+    Minus: '-',
+    Equal: '=',
+    BracketLeft: '[',
+    BracketRight: ']',
+    Backslash: `\\`,
+    Semicolon: ';',
+    Quote: `'`,
+    Comma: ',',
+    Period: '.',
+    Slash: '/',
+    ArrowUp: '↑',
+    ArrowLeft: '←',
+    ArrowDown: '↓',
+    ArrowRight: '→',
+  };
   for (let key of keysEn) {
     const keyEn = document.createElement('div');
     if (key.length === 1) {
@@ -89,10 +106,14 @@ function generateKeys() {
     } else {
       keyEn.classList.add('key__simple', 'key__en', `special__${key}`);
       keyEn.id = key;
-      keyEn.innerText = key;
+      if (Object.keys(spKeys).includes(key)) {
+        keyEn.innerText = spKeys[key];
+      } else {
+        keyEn.innerText = key;
+      }
     }
     document.addEventListener('keydown', (ev) => {
-      // console.log(ev.code);
+      console.log(ev.code);
       if (!ev.repeat) {
         switch (ev.code) {
           case `Key${key.toUpperCase()}`: {

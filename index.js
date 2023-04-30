@@ -153,6 +153,10 @@ const spKeys = {
   AltLeft: ['Alt', 'Alt'],
   AltRight: ['Alt', 'Alt'],
   MetaLeft: ['Win', 'Win'],
+  Space: [
+    'EN - for change Alt+Shift/Ctrl+Shift',
+    'РУС - для смены Alt+Shift/Ctrl+Shift',
+  ],
 };
 let caps = false;
 
@@ -168,7 +172,7 @@ function generateTextDisplayArea() {
   textDisplayArea.classList.add('textDisplayArea');
   textDisplayArea.append(textArea);
   document.body.append(textDisplayArea);
-  document.querySelector('textarea').disabled = true;
+  // document.querySelector('textarea').disabled = true;
 }
 
 function generateKeys(keys) {
@@ -215,6 +219,7 @@ function start() {
 }
 
 document.addEventListener('keydown', (ev) => {
+  ev.preventDefault();
   if ((ev.shiftKey && ev.ctrlKey) || (ev.shiftKey && ev.altKey)) {
     localStorage.setItem(
       'lang',
@@ -230,12 +235,39 @@ document.addEventListener('keydown', (ev) => {
         : '#EEEEFF';
     }
     document.querySelector(`#${ev.code}`)?.classList?.add('pressed');
-    document.querySelector('textarea').value += ev.key;
+    if (ev.code === 'Enter') {
+      document.querySelector('textarea').value += '\n';
+    } else if (ev.code === 'Tab') {
+      document.querySelector('textarea').value += '\t';
+    } else if (ev.code === 'Backspace') {
+      document.querySelector('textarea').value = document
+        .querySelector('textarea')
+        .value.slice(0, -1);
+    } else if (ev.code === 'Bacqoute') {
+      document.querySelector('textarea').value +=
+        localStorage.getItem('lang') === 'ru' ? 'ё' : ev.key;
+    } else if (
+      ![
+        'ShiftRight',
+        'ShiftLeft',
+        'ControlLeft',
+        'AltLeft',
+        'AltRight',
+        'MetaLeft',
+      ].includes(ev.code)
+    ) {
+      document.querySelector('textarea').value += ev.key;
+    }
   }
 });
 
 document.addEventListener('keyup', (ev) => {
   document.querySelector(`#${ev.code}`)?.classList?.remove('pressed');
+});
+
+document.addEventListener('click', () => {
+  const event = new Event('keyup');
+  document.dispatchEvent(event);
 });
 
 start();

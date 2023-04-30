@@ -7,30 +7,30 @@
   display: flex;
   width: 100%;
   height: 100vh;
-  background-color: #33CCCC;
+  background-color: #e5e7e6;
   padding: 5%;
   flex-direction: column;
   row-gap: 5%;
 }
 * body > section {
-  background-color: #009999;
+  background-color: #5B5F63;
 }
 
 .keyboard {
   display: flex;
   width: 1000px;
   margin: 0 auto;
-  height: 450px;
-  padding: 5%;
+  padding: 30px;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 5px;
   justify-content: space-between;
+  align-content: flex-start;
 }
 .keyboard .key__simple {
   display: flex;
   aspect-ratio: 1.1/1;
-  height: 20%;
+  height: 50px;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
@@ -60,7 +60,7 @@
   display: flex;
   width: 100%;
   max-height: 100%;
-  background-color: #66CCCC;
+  background-color: #969DA3;
   border: none transparent;
   border-radius: 10px;
   padding: 10px;
@@ -91,6 +91,7 @@
 
 #Space {
   aspect-ratio: 7/1;
+  font-size: 12px;
 }
 
 #ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
@@ -105,6 +106,27 @@
   background-color: #eeeeee;
   left: 5px;
   top: 5px;
+}
+
+@media (max-width: 1100px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+  }
+  .keyboard .key__simple {
+    height: 39px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+  }
+  .keyboard .key__simple {
+    height: 39px;
+    font-size: 12px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

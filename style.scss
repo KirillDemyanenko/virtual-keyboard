@@ -1,0 +1,147 @@
+$color_main: #e5e7e6;
+$color_section: #5B5F63;
+$color_text_area: #969DA3;
+$color_second: #FFCC33;
+$color_text: #FF0000;
+$color_keyboard_text: #990000;
+$color_keys_shadow: #996600;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: $color_main;
+    padding: 5%;
+    flex-direction: column;
+    row-gap: 5%;
+
+    & > section {
+      background-color: $color_section;
+    }
+  }
+}
+
+.keyboard {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+  align-content: flex-start;
+
+  .key__simple {
+    display: flex;
+    aspect-ratio: 1.1 / 1;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #161718;
+    color: #eee;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0 0 5px 5px;
+    }
+
+    &:active {
+      transform: translateY(4px);
+    }
+  }
+  .backspace {
+    aspect-ratio: 2.5 / 1;
+  }
+}
+
+.textDisplayArea {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  height: 30vh;
+  padding: 1%;
+
+  textarea {
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    background-color: $color_text_area;
+    border: none transparent;
+    border-radius: 10px;
+    padding: 10px;
+    color: $color_text;
+  }
+}
+
+.pressed {
+  background: $color_keys_shadow;
+  transform: translateY(4px);
+}
+
+.key__simple.pressed {
+  box-shadow: 0 0 5px 5px;
+  transform: translateY(4px);
+}
+
+#Backspace {
+  aspect-ratio: 2.5 / 1;
+}
+
+#Tab, #Ctrl {
+  aspect-ratio: 1.5 / 1;
+}
+
+#Enter, #CapsLock, #ShiftLeft, #ShiftRight {
+  aspect-ratio: 2.1 / 1
+}
+
+#Space {
+  aspect-ratio: 7 / 1;
+  font-size: 12px;
+}
+
+#ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
+  aspect-ratio: 1.4 / 1;
+}
+
+.circle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  left: 5px;
+  top: 5px;
+}
+
+@media (max-width: 1100px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+
+    .key__simple {
+      height: 39px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+
+    .key__simple {
+      height: 39px;
+      font-size: 12px;
+    }
+  }
+}

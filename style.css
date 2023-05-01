@@ -3,5 +3,130 @@
   padding: 0;
   box-sizing: border-box;
 }
+* body {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #e5e7e6;
+  padding: 5%;
+  flex-direction: column;
+  row-gap: 5%;
+}
+* body > section {
+  background-color: #5B5F63;
+}
+
+.keyboard {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+.keyboard .key__simple {
+  display: flex;
+  aspect-ratio: 1.1/1;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #161718;
+  color: #eee;
+  position: relative;
+}
+.keyboard .key__simple:hover {
+  box-shadow: 0 0 5px 5px;
+}
+.keyboard .key__simple:active {
+  transform: translateY(4px);
+}
+.keyboard .backspace {
+  aspect-ratio: 2.5/1;
+}
+
+.textDisplayArea {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  height: 30vh;
+  padding: 1%;
+}
+.textDisplayArea textarea {
+  display: flex;
+  width: 100%;
+  max-height: 100%;
+  background-color: #969DA3;
+  border: none transparent;
+  border-radius: 10px;
+  padding: 10px;
+  color: #FF0000;
+}
+
+.pressed {
+  background: #996600;
+  transform: translateY(4px);
+}
+
+.key__simple.pressed {
+  box-shadow: 0 0 5px 5px;
+  transform: translateY(4px);
+}
+
+#Backspace {
+  aspect-ratio: 2.5/1;
+}
+
+#Tab, #Ctrl {
+  aspect-ratio: 1.5/1;
+}
+
+#Enter, #CapsLock, #ShiftLeft, #ShiftRight {
+  aspect-ratio: 2.1/1;
+}
+
+#Space {
+  aspect-ratio: 7/1;
+  font-size: 12px;
+}
+
+#ArrowUp, #ArrowDown, #ArrowLeft, #ArrowRight {
+  aspect-ratio: 1.4/1;
+}
+
+.circle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  left: 5px;
+  top: 5px;
+}
+
+@media (max-width: 1100px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+  }
+  .keyboard .key__simple {
+    height: 39px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .keyboard {
+    width: 760px;
+    padding: 10px;
+  }
+  .keyboard .key__simple {
+    height: 39px;
+    font-size: 12px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -265,137 +265,20 @@ document.addEventListener('keyup', (ev) => {
   document.querySelector(`#${ev.code}`)?.classList?.remove('pressed');
 });
 
-document.addEventListener('click', () => {
-  const event = new Event('keyup');
+start();
+
+document.addEventListener('mousedown', (ev) => {
+  const event = new KeyboardEvent('keydown', {
+    key: ev.target.textContent.toLowerCase(),
+    code: ev.target.id,
+  });
   document.dispatchEvent(event);
 });
 
-start();
-
-// function getSymbol(code) {
-//   repeat = true;
-//   document.querySelector(`.special__${code}`)?.classList.add('pressed');
-//   document.querySelector('textarea').value += spKeys[code];
-// }
-//
-// function removeHighlight(code) {
-//   if (!(code === 'CapsLock' && caps)) {
-//     document.querySelector(`.special__${code}`)?.classList.remove('pressed');
-//     repeat = false;
-//   }
-// }
-
-// function generateKeys() {
-//   for (const key of keysEn) {
-//     const keyEn = document.createElement('div');
-//     if (key.length === 1) {
-//       keyEn.classList.add('key__simple', 'key__en', `sym__${key}`);
-//       keyEn.innerText = key.toUpperCase();
-//     } else {
-//       keyEn.classList.add('key__simple', 'key__en', `special__${key}`);
-//       keyEn.id = key;
-//       if (Object.keys(spKeys).includes(key)) {
-//         keyEn.innerText = spKeys[key];
-//       } else {
-//         keyEn.innerText = key;
-//       }
-//     }
-//     document.addEventListener('keydown', (ev) => {
-//       console.log(ev.key);
-//       if (
-//         [
-//           'Minus',
-//           'Equal',
-//           'BracketLeft',
-//           'BracketRight',
-//           'Backslash',
-//           'Semicolon',
-//           'Quote',
-//           'Comma',
-//           'Period',
-//           'Slash',
-//         ].includes(ev.code)
-//       ) {
-//         if (!repeat) getSymbol(ev.code);
-//       } else {
-//         switch (ev.code) {
-//           case `Key${key.toUpperCase()}`: {
-//             document.querySelector(`.sym__${key}`).classList.add('pressed');
-//             document.querySelector('textarea').value +=
-//               caps || ev.shiftKey ? key.toUpperCase() : key;
-//             break;
-//           }
-//           case `Digit${key}`: {
-//             document.querySelector(`.sym__${key}`).classList.add('pressed');
-//             document.querySelector('textarea').value += key;
-//             break;
-//           }
-//           case 'Backspace': {
-//             if (!repeat) {
-//               repeat = true;
-//               document
-//                 .querySelector(`.special__${ev.code}`)
-//                 ?.classList.add('pressed');
-//               document.querySelector('textarea').value = document
-//                 .querySelector('textarea')
-//                 .value.slice(0, -1);
-//             }
-//             break;
-//           }
-//           case 'Delete': {
-//             if (!repeat) {
-//               repeat = true;
-//               document
-//                 .querySelector(`.special__${ev.code}`)
-//                 ?.classList.add('pressed');
-//               document.querySelector('textarea').value = document
-//                 .querySelector('textarea')
-//                 .value.slice(0, -1);
-//             }
-//             break;
-//           }
-//           case 'Backquote': {
-//             if (!repeat) getSymbol(ev.code);
-//             break;
-//           }
-//           case 'CapsLock': {
-//             if (!repeat) {
-//               repeat = true;
-//               caps = !caps;
-//               document
-//                 .querySelector(`.special__${ev.code}`)
-//                 ?.classList.add('pressed');
-//             }
-//             break;
-//           }
-//           case 'Enter': {
-//             if (!repeat) {
-//               repeat = true;
-//               document
-//                 .querySelector(`.special__${ev.code}`)
-//                 ?.classList.add('pressed');
-//               document.querySelector('textarea').value += '\n';
-//             }
-//             break;
-//           }
-//         }
-//       }
-//     });
-//     document.addEventListener('keyup', (ev) => {
-//       switch (ev.code) {
-//         case `Key${key.toUpperCase()}`: {
-//           document.querySelector(`.sym__${key}`).classList.remove('pressed');
-//           break;
-//         }
-//         case `Digit${key}`: {
-//           document.querySelector(`.sym__${key}`).classList.remove('pressed');
-//           break;
-//         }
-//         default:
-//           removeHighlight(ev.code);
-//           break;
-//       }
-//     });
-//     document.querySelector('.keyboard').append(keyEn);
-//   }
-// }
+document.addEventListener('mouseup', (ev) => {
+  const event = new KeyboardEvent('keyup', {
+    key: ev.target.textContent.toLowerCase(),
+    code: ev.target.id,
+  });
+  document.dispatchEvent(event);
+});
